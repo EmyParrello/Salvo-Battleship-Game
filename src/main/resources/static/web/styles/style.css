@@ -1,0 +1,90 @@
+body {
+    font-family: 'Aldrich', sans-serif;
+    background-color: black;
+    color: white;
+}
+
+/*PLAYERS*/
+#currentPlayer,
+#opponent {
+    background-color: #00102a;
+    padding: 10px;
+    border-style: solid;
+    border-color: white;
+    border-width: thin;
+    box-shadow: 0 0 5px #37fffd;
+}
+
+#currentPlayer {
+    color: #37fffd;
+}
+
+
+/* GRIDS */
+table {
+    margin: 40px;
+}
+
+tbody {
+    background-image: url("img/radar.jpg");
+    background-size: contain;
+    background-position: bottom;
+}
+
+th,
+td {
+    width: 45px;
+    height: 45px;
+    text-align: center;
+}
+
+.grids_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.position {
+    background-color: rgba(1, 93, 230, 0.2);
+}
+
+.ship {
+    background-color: #37fffd;
+}
+
+.salvo {
+    background-image: radial-gradient(red, darkred);
+}
+
+.hit {
+    background-image: radial-gradient(red, darkred, #37fffd);
+}
+
+.no_background {
+    background-color: black;
+}
+
+
+/* TEXT CLASSES */
+h1 {
+    margin: 25px;
+    font-size: 50px;
+    text-shadow: 0 0 10px #37fffd;
+}
+
+p {
+    margin: 10px;
+}
+
+.center {
+    text-align: center;
+}
+
+.red {
+    color: red;
+}
+
+/*DISPLAY CLASSES*/
+.inline {
+    display: inline;
+}

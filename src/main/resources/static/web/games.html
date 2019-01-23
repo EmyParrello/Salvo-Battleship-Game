@@ -1,0 +1,71 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Salvo - Games</title>
+    <link href="https://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+</head>
+
+<body>
+    <div id="app">
+        <h1 class="center">Battleship</h1>
+        <form onsubmit="return false" v-if="currentPlayer==null">
+            <label>Username (e-mail): <input type="email" name="username" v-model="emailInput"></label>
+            <label>Password: <input type="password" name="password" v-model="passwordInput"></label>
+            <button type="submit" v-on:click="logIn()">Log In</button>
+            <button type="submit" v-on:click="signUp()">Sign Up</button>
+        </form>
+        <form onsubmit="return false" v-else="currentPlayer!==null">
+            <p>You are logged in as <span class="red">{{currentPlayer.email}}</span></p>
+            <button type="submit" v-on:click="logOut()">Log Out</button>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="5">Games</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="game in gamesData">
+                    <td>{{game.id}}</td>
+                    <td>{{getGameCreationDate(game)}}</td>
+                    <td v-for="gamePlayer in game.gamePlayers">{{gamePlayer.player.email}}</td>
+                    <td v-if="game.gamePlayers.length < 2"><span class="red">Waiting for an opponent</span></td>
+                    <td><button v-if="enterGameButton(game)" v-on:click="enterGame(game)">Enter Game</button>
+                        <button v-if="joinGameButton(game)" v-on:click="joinGame(game)">Join Game</button></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td><button v-if="currentPlayer !== null" v-on:click="newGame()">New Game</button></td>
+                </tr>
+            </tfoot>
+        </table>
+        <!-- <ol id="gameList"></ol> -->
+        <table>
+            <tr>
+                <th>Username</th>
+                <th>Total Score</th>
+                <th>Won</th>
+                <th>Lost</th>
+                <th>Tied</th>
+                <th>Played Games</th>
+            </tr>
+            <tr v-for="player in players">
+                <td>{{player.username}}</td>
+                <td>{{player.totalScore}}</td>
+                <td>{{player.totalWins}}</td>
+                <td>{{player.totalLosses}}</td>
+                <td>{{player.totalTies}}</td>
+                <td>{{player.totalGames}}</td>
+            </tr>
+        </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="scripts/games.js"></script>
+</body>
+
+</html>
