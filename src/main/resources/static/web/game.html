@@ -5,47 +5,102 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Salvo - Game</title>
-    <link href="https://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC|Pirata+One" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styles/style.css">
 </head>
 
 <body>
     <div id="app">
-        <h1 class="center">Battleship</h1>
-        <div class="center">
-            <p class="inline" id="currentPlayer">{{currentPlayer.email}} <span class="red">(you)</span></p>
-            <p class="inline">Vs.</p>
-            <p class="inline" id="opponent">{{opponent.email}}</p>
+        <header>
+            <img src="styles/img/flag.png" alt="" class="logo">
+            <h1>Pirate Battleship!</h1>
+        </header>
+        <div class="players_panel">
+            <div class="players">
+                <p class="inline" id="currentPlayer">{{currentPlayer.email}} <span class="red">(you)</span></p>
+                <p class="inline">Vs.</p>
+                <p class="inline" id="opponent">{{opponent.email}}</p>
+            </div>
+            <div class="nav_buttons">
+                <form onsubmit="return false">
+                    <button type="button"><a href="games.html">Go Back</a></button>
+                    <button type="submit" v-on:click="logOut()">Log Out</button>
+                </form>
+            </div>
         </div>
-        <div class="grids_container">
-            <table>
-                <tbody>
-                    <tr>
-                        <th class="no_background"></th>
-                        <th v-for="column in columns" class="position">{{column}}</th>
-                    </tr>
-                    <tr v-for="row in rows">
-                        <th class="position">{{row}}</th>
-                        <td v-for="cell in 10" :id="row + cell"></td>
-                    </tr>
-                </tbody>
-            </table>
-            <table>
-                <tbody>
-                    <tr>
-                        <th class="no_background"></th>
-                        <th v-for="column in columns" class="position">{{column}}</th>
-                    </tr>
-                    <tr v-for="row in rows">
-                        <th class="position">{{row}}</th>
-                        <td v-for="cell in 10" :id="'s' + row + cell"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <form onsubmit="return false">
-            <button type="submit" v-on:click="logOut()">Log Out</button>
-        </form>
+        <main v-if="ships.length != 0">
+            <div class="grids_container">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th class="no_background"></th>
+                            <th v-for="column in columns" class="position">{{column}}</th>
+                        </tr>
+                        <tr v-for="row in rows">
+                            <th class="position">{{row}}</th>
+                            <td v-for="cell in 10" :id="row + cell"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th class="no_background"></th>
+                            <th v-for="column in columns" class="position">{{column}}</th>
+                        </tr>
+                        <tr v-for="row in rows">
+                            <th class="position">{{row}}</th>
+                            <td v-for="cell in 10" :id="'s' + row + cell"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        <main v-else="ships.length == 0">
+            <div class="placingShips">
+                <div class="ships_container" @drop="drop" @dragover="allowDrop">
+                    <div id="aircraft_carrier" class="fullShip" draggable="true" @dragstart="drag">
+                        <div class="divShip"></div>
+                        <div class="divShip"></div>
+                        <div class="divShip"></div>
+                        <div class="divShip"></div>
+                        <div class="divShip"></div>
+                    </div>
+                    <div id="battleship" draggable="true" @dragstart="drag">
+                        <div class="divShip"></div>
+                        <div class="divShip"></div>
+                        <div class="divShip"></div>
+                        <div class="divShip"></div>
+                    </div>
+                    <div id="submarine" draggable="true" @dragstart="drag">
+                        <div class="divShip"></div>
+                        <div class="divShip"></div>
+                        <div class="divShip"></div>
+                    </div>
+                    <div id="destroyer" draggable="true" @dragstart="drag">
+                        <div class="divShip"></div>
+                        <div class="divShip"></div>
+                        <div class="divShip"></div>
+                    </div>
+                    <div id="patrol_boat" draggable="true" @dragstart="drag">
+                        <div class="divShip"></div>
+                        <div class="divShip"></div>
+                    </div>
+                </div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th class="no_background"></th>
+                            <th v-for="column in columns" class="position">{{column}}</th>
+                        </tr>
+                        <tr v-for="row in rows">
+                            <th class="position">{{row}}</th>
+                            <td v-for="cell in 10" :id="row + cell" @drop="drop" @dragover="allowDrop"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>

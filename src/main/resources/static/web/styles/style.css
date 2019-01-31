@@ -1,53 +1,198 @@
 body {
-    font-family: 'Aldrich', sans-serif;
-    background-color: black;
-    color: white;
+    font-family: 'Patrick Hand SC', cursive;
+    background-image: url("img/background.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    color: black;
+    text-shadow: 0 0 1px rgba(252, 231, 164, 0.75);;
 }
 
-/*PLAYERS*/
-#currentPlayer,
-#opponent {
-    background-color: #00102a;
-    padding: 10px;
-    border-style: solid;
-    border-color: white;
-    border-width: thin;
-    box-shadow: 0 0 5px #37fffd;
+/* HEADER */
+header {
+margin-top: 50px;
 }
+
+h1 {
+    font-family: 'Pirata One', cursive;
+    margin: 25px;
+    font-size: 50px;
+    text-shadow: 0 0 10px burlywood;
+    padding-top: 70px;
+    text-align: center;
+}
+
+.logo {
+    position: absolute;
+    left: 350px;
+    top: 30px;
+    z-index: -1;
+    transform: rotate(-20deg);
+}
+
+
+/* ----- games.html ----- */
+/* AUTHENTICATION */
+label {
+    display: block;
+    margin: 3px;
+}
+
+input {
+    background-color: rgba(1, 1, 1, 0.25);
+    border: none;
+    width: 100%;
+}
+
+button {
+    font-family: 'Pirata One', cursive;
+    font-size: 20px;
+    background: none;
+    border: none;   
+    margin: 7px;
+}
+
+button:hover {
+    color: rgba(227, 129, 58, 1);
+    text-decoration: underline overline;
+}
+
+.authentication {
+    height: 120px;
+    background-image: url("img/title_background.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: row;    
+    justify-content: center;
+}
+
+/* when user is logged out */
+.loggedout_form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0px;
+}
+
+.auth_fields {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.auth_buttons {
+display: flex;
+flex-direction: column;
+justify-content: center;
+margin-top: 10px;
+margin-left: 20px;
+}
+
+/* when user is logged in */
+.loggedin_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0px;
+}
+
+
+/* ----- game.html ----- */
+/*PLAYERS*/
+form {
+    margin: 0px;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+/* #currentPlayer,
+#opponent {
+    background-image: url("img/title_background.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 20px;
+} */
 
 #currentPlayer {
-    color: #37fffd;
+    color: darkred;
+}
+
+.players_panel {
+    height: 100px;
+    background-image: url("img/title_background.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;    
+    align-items: center;
+    justify-content: center;
+}
+
+.inline {
+    display: inline;
 }
 
 
+/* ----- both files ----- */
 /* GRIDS */
 table {
     margin: 40px;
 }
 
-tbody {
-    background-image: url("img/radar.jpg");
+tbody {    
     background-size: contain;
     background-position: bottom;
 }
 
 th,
 td {
+    background-color: rgba(252, 231, 164, 0.3);
     width: 45px;
     height: 45px;
     text-align: center;
+    padding: 0px;
 }
 
-.grids_container {
+.grids_container, {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
 .position {
-    background-color: rgba(1, 93, 230, 0.2);
+    background-color: rgba(252, 231, 164, 0.7);
 }
 
+.no_background {
+    background-color: rgba(1, 1, 1, 0);
+}
+
+/*placing ships*/
+.placingShips, {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.divShip {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    background-color: #37fffd;
+}
+
+.fullShip {
+    border: solid black thin;
+}
+
+/* showing ships, salvoes and hits */
 .ship {
     background-color: #37fffd;
 }
@@ -60,18 +205,8 @@ td {
     background-image: radial-gradient(red, darkred, #37fffd);
 }
 
-.no_background {
-    background-color: black;
-}
-
 
 /* TEXT CLASSES */
-h1 {
-    margin: 25px;
-    font-size: 50px;
-    text-shadow: 0 0 10px #37fffd;
-}
-
 p {
     margin: 10px;
 }
@@ -82,9 +217,4 @@ p {
 
 .red {
     color: red;
-}
-
-/*DISPLAY CLASSES*/
-.inline {
-    display: inline;
 }

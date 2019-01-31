@@ -6,7 +6,10 @@ var app = new Vue({
         columns: [],
         rows: [],
         currentPlayer: {},
-        opponent: {}
+        opponent: {},
+        ships: [],
+        salvoes: [],
+        shipID: null
     },
 
     methods: {
@@ -21,6 +24,9 @@ var app = new Vue({
                     } else {
                         app.gameView = data;
                         console.log(app.gameView);
+                        
+                        app.ships = data.ships;
+                        app.salvoes = data.salvoes;
 
                         app.showPlayers();
                         app.showShips();
@@ -56,9 +62,8 @@ var app = new Vue({
         },
 
         showShips: function () {
-            var ships = this.gameView.ships;
-            for (var s = 0; s < ships.length; s++) {
-                var locations = ships[s].location;
+            for (var s = 0; s < this.ships.length; s++) {
+                var locations = this.ships[s].location;
                 for (var l = 0; l < locations.length; l++) {
                     var shipLocation = document.getElementById(locations[l]);
                     shipLocation.setAttribute("class", "ship");
@@ -67,9 +72,8 @@ var app = new Vue({
         },
 
         showSalvoes: function () {
-            var salvoes = this.gameView.salvoes;
-            for (var gamePlayer in salvoes) {
-                var turns = salvoes[gamePlayer];
+            for (var gamePlayer in this.salvoes) {
+                var turns = this.salvoes[gamePlayer];
                 for (var turn in turns) {
                     var locations = turns[turn];
                     for (var l = 0; l < locations.length; l++) {
@@ -125,6 +129,24 @@ var app = new Vue({
             }
         },
 
+        allowDrop: function (ev) {
+            console.log("ondragover");
+            ev.preventDefault();
+        },
+
+        drag: function (ev) {
+            console.log("drag", ev.target);
+            this.shipID = ev.target.id;
+        },
+
+        drop: function (ev) {
+            console.log("drop", this.shipID);
+            console.log(ev.target);
+            console.log(ev);
+            ev.preventDefault();
+            ev.target.appendChild(document.getElementById(this.shipID));
+        },
+
         logOut: function () {
             fetch("/api/logout", {
                 credentials: 'include',
@@ -140,7 +162,6 @@ var app = new Vue({
             });
         }
     },
-
 
     created() {
         this.createGrid();
