@@ -28,35 +28,45 @@
                 </form>
             </div>
         </div>
-        <main v-if="ships.length != 0">
+        <main>
             <div class="grids_container">
-                <table>
+                <table class="grid">
+                    <thead>
+                        <tr>
+                            <th class="no_background parchment pirate" colspan="11">Your Ships</th>
+                        </tr>
+                    </thead>
                     <tbody>
                         <tr>
-                            <th class="no_background"></th>
-                            <th v-for="column in columns" class="position">{{column}}</th>
+                            <th class="cells no_background"></th>
+                            <th v-for="column in columns" class="cells position">{{column}}</th>
                         </tr>
                         <tr v-for="row in rows">
-                            <th class="position">{{row}}</th>
-                            <td v-for="cell in 10" :id="row + cell"></td>
+                            <th class="cells position">{{row}}</th>
+                            <td class="cells" v-for="cell in 10" :id="row + cell"></td>
                         </tr>
                     </tbody>
                 </table>
-                <table>
+                <table class="grid">
+                    <thead>
+                        <tr>
+                            <th class="no_background parchment pirate" colspan="11">Your Shots</th>
+                        </tr>
+                    </thead>
                     <tbody>
                         <tr>
-                            <th class="no_background"></th>
-                            <th v-for="column in columns" class="position">{{column}}</th>
+                            <th class="cells no_background"></th>
+                            <th v-for="column in columns" class="cells position">{{column}}</th>
                         </tr>
                         <tr v-for="row in rows">
-                            <th class="position">{{row}}</th>
-                            <td v-for="cell in 10" :id="'s' + row + cell"></td>
+                            <th class="cells position">{{row}}</th>
+                            <td class="cells" v-for="cell in 10" :id="'s' + row + cell"></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </main>
-        <main v-else="ships.length == 0">
+        <main>
             <div class="placingShips">
                 <div class="ships_container" @drop="drop" @dragover="allowDrop">
                     <div id="aircraft_carrier" class="fullShip" draggable="true" @dragstart="drag">
@@ -87,15 +97,15 @@
                         <div class="divShip"></div>
                     </div>
                 </div>
-                <table>
+                <table class="grid">
                     <tbody>
                         <tr>
-                            <th class="no_background"></th>
-                            <th v-for="column in columns" class="position">{{column}}</th>
+                            <th class="cells no_background"></th>
+                            <th v-for="column in columns" class="position cells">{{column}}</th>
                         </tr>
                         <tr v-for="row in rows">
-                            <th class="position">{{row}}</th>
-                            <td v-for="cell in 10" :id="row + cell" @drop="drop" @dragover="allowDrop"></td>
+                            <th class="cells position">{{row}}</th>
+                            <td class="cells" v-for="cell in 10" :id="row + cell" @drop="drop" @dragover="allowDrop"></td>
                         </tr>
                     </tbody>
                 </table>

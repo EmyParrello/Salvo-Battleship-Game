@@ -23,8 +23,8 @@ h1 {
 
 .logo {
     position: absolute;
-    left: 350px;
-    top: 30px;
+    left: 30%;
+    top: 5%;
     z-index: -1;
     transform: rotate(-20deg);
 }
@@ -53,7 +53,6 @@ button {
 
 button:hover {
     color: rgba(227, 129, 58, 1);
-    text-decoration: underline overline;
 }
 
 .authentication {
@@ -110,14 +109,9 @@ a {
     text-decoration: none;
 }
 
-/* #currentPlayer,
-#opponent {
-    background-image: url("img/title_background.png");
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    padding: 20px;
-} */
+a:hover {
+    color: rgba(227, 129, 58, 1);
+}
 
 #currentPlayer {
     color: darkred;
@@ -135,6 +129,14 @@ a {
     justify-content: center;
 }
 
+.players {
+    margin-top: 10px;
+}
+
+.nav_buttons {
+    margin-top: 5px;
+}
+
 .inline {
     display: inline;
 }
@@ -144,20 +146,17 @@ a {
 /* GRIDS */
 table {
     margin: 40px;
-}
-
-tbody {    
-    background-size: contain;
-    background-position: bottom;
+    width: 93%;
+    display: inline-block;
 }
 
 th,
 td {
-    background-color: rgba(252, 231, 164, 0.3);
-    width: 45px;
-    height: 45px;
+    background-color: rgba(252, 231, 164, 0.5);
     text-align: center;
     padding: 0px;
+    width: 200px;
+    height: 50px;
 }
 
 .grids_container, {
@@ -166,12 +165,34 @@ td {
     justify-content: center;
 }
 
+.grid {
+    width: auto;
+}
+
+.cells {
+    width: 45px;
+    height: 45px;
+}
+
 .position {
     background-color: rgba(252, 231, 164, 0.7);
 }
 
 .no_background {
     background-color: rgba(1, 1, 1, 0);
+}
+
+.parchment,
+.game_buttons {
+    background-image: url(img/title_background.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.game_buttons {
+    width: 200px;
+    height: 50px;
 }
 
 /*placing ships*/
@@ -185,7 +206,7 @@ td {
     display: inline-block;
     width: 45px;
     height: 45px;
-    background-color: #37fffd;
+    background-color: black;
 }
 
 .fullShip {
@@ -194,7 +215,7 @@ td {
 
 /* showing ships, salvoes and hits */
 .ship {
-    background-color: #37fffd;
+    background-color: black;
 }
 
 .salvo {
@@ -202,7 +223,7 @@ td {
 }
 
 .hit {
-    background-image: radial-gradient(red, darkred, #37fffd);
+    background-image: radial-gradient(red, darkred, black);
 }
 
 
@@ -217,4 +238,9 @@ p {
 
 .red {
     color: red;
+}
+
+.pirate {
+    font-family: 'Pirata One', cursive;
+    font-size: 20px;
 }

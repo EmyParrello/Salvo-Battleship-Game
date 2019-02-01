@@ -35,43 +35,60 @@
             <table>
                 <thead>
                     <tr>
-                        <th colspan="5">Games</th>
+                        <th class="pirate no_background parchment">Games</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <tr>
+                        <th>Nº</th>
+                        <th>Creation Date</th>
+                        <th colspan="2">Players</th>
+                    </tr>
                     <tr v-for="game in gamesData">
                         <td>{{game.id}}</td>
                         <td>{{getGameCreationDate(game)}}</td>
                         <td v-for="gamePlayer in game.gamePlayers">{{gamePlayer.player.email}}</td>
                         <td v-if="game.gamePlayers.length < 2"><span class="red">Waiting for an opponent</span></td>
-                        <td><button v-if="enterGameButton(game)" v-on:click="enterGame(game)">Enter Game</button>
-                            <button v-if="joinGameButton(game)" v-on:click="joinGame(game)">Join Game</button></td>
+                        <td class="no_background">
+                            <button class="game_buttons" v-if="enterGameButton(game)" v-on:click="enterGame(game)">Enter
+                                Game</button>
+                            <button class="game_buttons" v-else-if="joinGameButton(game)" v-on:click="joinGame(game)">Join
+                                Game</button>
+                            </td>
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td><button v-if="currentPlayer !== null" v-on:click="newGame()">New Game</button></td>
+                        <td class="no_background"><button class="game_buttons" v-if="currentPlayer !== null" v-on:click="newGame()">New
+                                Game</button></td>
                     </tr>
                 </tfoot>
             </table>
             <!-- <ol id="gameList"></ol> -->
             <table>
-                <tr>
-                    <th>Username</th>
-                    <th>Total Score</th>
-                    <th>Won</th>
-                    <th>Lost</th>
-                    <th>Tied</th>
-                    <th>Played Games</th>
-                </tr>
-                <tr v-for="player in players">
-                    <td>{{player.username}}</td>
-                    <td>{{player.totalScore}}</td>
-                    <td>{{player.totalWins}}</td>
-                    <td>{{player.totalLosses}}</td>
-                    <td>{{player.totalTies}}</td>
-                    <td>{{player.totalGames}}</td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th class="pirate no_background parchment">Leaderboard</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Username</th>
+                        <th>Total Score</th>
+                        <th>Won</th>
+                        <th>Lost</th>
+                        <th>Tied</th>
+                        <th>Total Games</th>
+                    </tr>
+                    <tr v-for="player in players">
+                        <td>{{player.username}}</td>
+                        <td>{{player.totalScore}}</td>
+                        <td>{{player.totalWins}}</td>
+                        <td>{{player.totalLosses}}</td>
+                        <td>{{player.totalTies}}</td>
+                        <td>{{player.totalGames}}</td>
+                    </tr>
+                </tbody>
             </table>
         </main>
     </div>

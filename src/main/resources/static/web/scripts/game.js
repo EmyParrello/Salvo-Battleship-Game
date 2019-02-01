@@ -24,13 +24,18 @@ var app = new Vue({
                     } else {
                         app.gameView = data;
                         console.log(app.gameView);
-                        
+
                         app.ships = data.ships;
                         app.salvoes = data.salvoes;
 
                         app.showPlayers();
-                        app.showShips();
-                        app.showSalvoes();
+
+                        if (app.ships.length !== 0){
+                            app.showShips();
+                        }
+                        if (app.salvoes.length !== 0){
+                            app.showSalvoes();
+                        }
                     }
                 })
         },
@@ -67,31 +72,34 @@ var app = new Vue({
                 for (var l = 0; l < locations.length; l++) {
                     var shipLocation = document.getElementById(locations[l]);
                     shipLocation.setAttribute("class", "ship");
+                    shipLocation.classList.add("cells");
                 }
             }
         },
 
         showSalvoes: function () {
-            for (var gamePlayer in this.salvoes) {
-                var turns = this.salvoes[gamePlayer];
-                for (var turn in turns) {
-                    var locations = turns[turn];
-                    for (var l = 0; l < locations.length; l++) {
-                        if (gamePlayer == this.url.searchParams.get("gp")) {
-                            var salvoLocation = document.getElementById("s" + locations[l]);
-                            salvoLocation.setAttribute("class", "salvo");
-                            salvoLocation.innerHTML = turn;
-                        } else {
-                            var ship = document.getElementsByClassName("ship").namedItem(locations[l]);
-                            var hitLocation = document.getElementById(locations[l]);
-                            if (ship == hitLocation) {
-                                hitLocation.setAttribute("class", "hit");
-                                hitLocation.innerHTML = turn;
+                for (var gamePlayer in this.salvoes) {
+                    var turns = this.salvoes[gamePlayer];
+                    for (var turn in turns) {
+                        var locations = turns[turn];
+                        for (var l = 0; l < locations.length; l++) {
+                            if (gamePlayer == this.url.searchParams.get("gp")) {
+                                var salvoLocation = document.getElementById("s" + locations[l]);
+                                salvoLocation.setAttribute("class", "salvo");
+                                salvoLocation.classList.add("cells");
+                                salvoLocation.innerHTML = turn;
+                            } else {
+                                var ship = document.getElementsByClassName("ship").namedItem(locations[l]);
+                                var hitLocation = document.getElementById(locations[l]);
+                                if (ship == hitLocation) {
+                                    hitLocation.setAttribute("class", "hit");
+                                    hitLocation.classList.add("cells");
+                                    hitLocation.innerHTML = turn;
+                                }
                             }
                         }
                     }
                 }
-            }
         },
 
         placeShips: function () {
